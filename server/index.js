@@ -1,6 +1,5 @@
 const express = require('express') //모듈을 require로 불러옴
 const app = express() // express를 이용한 app 이름을 가진 서버를 만듬
-const port = 5000
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config/key');
@@ -27,6 +26,8 @@ mongoose.connect(config.mongoURL, {
 app.get('/', (req, res) => {
   res.send('Hello World! : )')
 })
+
+app.get('/api/hi', (req, res) => res.send('Hello World!'))
 
 //엔드포인트 /register
 app.post('/api/users/register', (req, res) => {
@@ -91,6 +92,7 @@ app.get('/api/users/logout', auth, (req, res) => {
   })
 })
 
+const port = 5000
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
